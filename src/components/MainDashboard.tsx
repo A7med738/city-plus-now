@@ -1,7 +1,8 @@
-import { Plus, Clock, MapPin, User } from "lucide-react";
+import { Plus, Clock, MapPin, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useAuth } from '@/hooks/useAuth';
 
 interface Service {
   id: string;
@@ -37,6 +38,7 @@ interface MainDashboardProps {
 }
 
 export default function MainDashboard({ onBookService }: MainDashboardProps) {
+  const { user, signOut } = useAuth();
   const getStatusColor = (status: Service['status']) => {
     switch (status) {
       case 'pending': return 'bg-status-pending';
@@ -87,11 +89,23 @@ export default function MainDashboard({ onBookService }: MainDashboardProps) {
       <div className="absolute top-4 left-4 right-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg sm:text-xl font-bold text-foreground">City Services</h2>
-            <p className="text-xs sm:text-sm text-muted-foreground">Book and manage your appointments</p>
+            <h2 className="text-lg sm:text-xl font-bold text-foreground">خدمات المدينة</h2>
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              أهلاً {user?.user_metadata?.full_name || user?.email?.split('@')[0]}
+            </p>
           </div>
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-full flex items-center justify-center">
-            <User className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-full flex items-center justify-center">
+              <User className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
+            </div>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-foreground w-8 h-8 sm:w-10 sm:h-10"
+              onClick={signOut}
+            >
+              <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
+            </Button>
           </div>
         </div>
       </div>
