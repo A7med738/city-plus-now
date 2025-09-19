@@ -74,15 +74,6 @@ export default function MainDashboard({ onBookService }: MainDashboardProps) {
           </Button>
         </div>
         
-        {/* Arabic Text - Smaller for better balance */}
-        <div className="text-center w-full">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight" dir="rtl">
-            احجز أي خدمة دلوقتي !
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-medium">
-            Book any service now!
-          </p>
-        </div>
       </div>
 
       {/* Header - Compact for Mobile */}
