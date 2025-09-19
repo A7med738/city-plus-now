@@ -1,10 +1,10 @@
 import { useState } from "react";
 import MainDashboard from "@/components/MainDashboard";
-import ServiceSelection from "@/components/ServiceSelection";
 import BookingConfirmation from "@/components/BookingConfirmation";
+import ServicesGrid from "@/components/ServicesGrid";
 import { useToast } from "@/hooks/use-toast";
 
-type AppState = "dashboard" | "service-selection" | "booking-confirmation";
+type AppState = "dashboard" | "services-grid" | "booking-confirmation";
 
 const Index = () => {
   const [currentState, setCurrentState] = useState<AppState>("dashboard");
@@ -12,7 +12,7 @@ const Index = () => {
   const { toast } = useToast();
 
   const handleBookService = () => {
-    setCurrentState("service-selection");
+    setCurrentState("services-grid");
   };
 
   const handleSelectCategory = (categoryId: string) => {
@@ -31,17 +31,17 @@ const Index = () => {
 
   const handleBack = () => {
     if (currentState === "booking-confirmation") {
-      setCurrentState("service-selection");
-    } else if (currentState === "service-selection") {
+      setCurrentState("services-grid");
+    } else if (currentState === "services-grid") {
       setCurrentState("dashboard");
     }
   };
 
   const renderCurrentView = () => {
     switch (currentState) {
-      case "service-selection":
+      case "services-grid":
         return (
-          <ServiceSelection 
+          <ServicesGrid 
             onBack={handleBack}
             onSelectCategory={handleSelectCategory}
           />
