@@ -29,10 +29,10 @@ export default function BookingConfirmation({ categoryId, onBack, onConfirmBooki
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" dir="rtl">
       {/* Header */}
       <div className="p-6 pb-4">
-        <div className="flex items-center space-x-4 mb-6">
+        <div className="flex items-center space-x-4 space-x-reverse mb-6">
           <Button 
             variant="ghost" 
             size="sm" 

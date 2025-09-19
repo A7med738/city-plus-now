@@ -31,16 +31,17 @@ const serviceCategories: ServiceCategory[] = [
     descriptionAr: "الخدمات الطبية، الشهادات الصحية، وخدمات الطوارئ",
     icon: Heart,
     color: "bg-red-500",
-    services: ["Health Certificate", "Medical Report", "Emergency Services", "Vaccination"]
+    services: ["الشهادة الصحية", "التقرير الطبي", "خدمات الطوارئ", "التطعيم", "طب الأسنان"]
   }
 ];
 
 interface ServicesGridProps {
   onBack: () => void;
   onSelectCategory: (categoryId: string) => void;
+  onViewHealthCenters: () => void;
 }
 
-export default function ServicesGrid({ onBack, onSelectCategory }: ServicesGridProps) {
+export default function ServicesGrid({ onBack, onSelectCategory, onViewHealthCenters }: ServicesGridProps) {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [animatedCards, setAnimatedCards] = useState<Set<string>>(new Set());
@@ -64,7 +65,7 @@ export default function ServicesGrid({ onBack, onSelectCategory }: ServicesGridP
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 relative overflow-hidden" dir="rtl">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-primary/5 rounded-full blur-xl animate-pulse"></div>
@@ -75,7 +76,7 @@ export default function ServicesGrid({ onBack, onSelectCategory }: ServicesGridP
       {/* Header */}
       <div className="relative z-10 p-4 pb-0">
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 space-x-reverse">
             <Button
               onClick={onBack}
               variant="ghost"
@@ -138,7 +139,13 @@ export default function ServicesGrid({ onBack, onSelectCategory }: ServicesGridP
                     ${isHovered ? 'scale-105 rotate-1' : 'scale-100 rotate-0'}
                     hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5
                   `}
-                  onClick={() => onSelectCategory(category.id)}
+                  onClick={() => {
+                    if (category.id === "healthcare") {
+                      onViewHealthCenters();
+                    } else {
+                      onSelectCategory(category.id);
+                    }
+                  }}
                   onMouseEnter={() => setHoveredCard(category.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >

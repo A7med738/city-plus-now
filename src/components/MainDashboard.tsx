@@ -1,4 +1,4 @@
-import { Plus, Clock, MapPin, User, LogOut } from "lucide-react";
+import { Plus, User, LogOut, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -33,11 +33,25 @@ const mockServices: Service[] = [
   }
 ];
 
-interface MainDashboardProps {
-  onBookService: () => void;
+interface Booking {
+  id: string;
+  service: string;
+  centerName: string;
+  doctorName: string;
+  timeSlot: string;
+  status: string;
+  queuePosition: number;
+  estimatedWait: number;
+  bookingTime: string;
 }
 
-export default function MainDashboard({ onBookService }: MainDashboardProps) {
+interface MainDashboardProps {
+  onBookService: () => void;
+  onViewBookings: () => void;
+  bookings: Booking[];
+}
+
+export default function MainDashboard({ onBookService, onViewBookings, bookings }: MainDashboardProps) {
   const { user, signOut } = useAuth();
   const getStatusColor = (status: Service['status']) => {
     switch (status) {
@@ -60,7 +74,7 @@ export default function MainDashboard({ onBookService }: MainDashboardProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background relative flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-background relative flex flex-col items-center justify-center px-4" dir="rtl">
       {/* Large Plus Sign and Arabic Text */}
       <div className="flex flex-col items-center justify-center space-y-12 w-full max-w-md">
         {/* Extra Large Plus Sign for Mobile with Pulse Animation */}
@@ -85,7 +99,7 @@ export default function MainDashboard({ onBookService }: MainDashboardProps) {
               أهلاً {user?.user_metadata?.full_name || user?.email?.split('@')[0]}
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 gap-x-reverse">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-full flex items-center justify-center">
               <User className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
             </div>
@@ -101,36 +115,20 @@ export default function MainDashboard({ onBookService }: MainDashboardProps) {
         </div>
       </div>
 
-      {/* Quick Stats - Compact for Mobile */}
-      <div className="absolute bottom-20 left-4 right-4">
-        <div className="grid grid-cols-2 gap-3">
-          <Card className="bg-gradient-card shadow-card border-border">
-            <CardContent className="p-3">
-              <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <div>
-                  <p className="text-xs text-muted-foreground">Active Bookings</p>
-                  <p className="text-lg font-semibold text-foreground">
-                    {mockServices.filter(s => s.status === 'progress' || s.status === 'pending').length}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-gradient-card shadow-card border-border">
-            <CardContent className="p-3">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4 text-primary" />
-                <div>
-                  <p className="text-xs text-muted-foreground">Next Appointment</p>
-                  <p className="text-lg font-semibold text-foreground">45 min</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+      {/* Bottom Navigation Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border z-50 shadow-lg">
+        <div className="flex items-center justify-center py-4">
+          <Button
+            variant="ghost"
+            className="flex flex-col items-center gap-2 px-8 py-3 hover:bg-primary/10 transition-colors"
+            onClick={onViewBookings}
+          >
+            <Calendar className="w-7 h-7 text-primary" />
+            <span className="text-sm font-medium text-foreground">حجوزاتي</span>
+          </Button>
         </div>
       </div>
+
     </div>
   );
 }
