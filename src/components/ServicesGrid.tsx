@@ -1,14 +1,5 @@
 import { 
-  Building2, 
-  Car, 
-  FileText, 
-  Heart, 
-  Home, 
-  Landmark, 
-  MapPin, 
-  Shield, 
-  Users, 
-  Wrench,
+  Heart,
   ArrowLeft,
   Search,
   Sparkles,
@@ -33,36 +24,6 @@ interface ServiceCategory {
 
 const serviceCategories: ServiceCategory[] = [
   {
-    id: "permits",
-    title: "Permits & Licenses",
-    titleAr: "التراخيص والتصاريح",
-    description: "Business licenses, building permits, and official documents",
-    descriptionAr: "تراخيص الأعمال، تصاريح البناء، والوثائق الرسمية",
-    icon: FileText,
-    color: "bg-blue-500",
-    services: ["Business License", "Building Permit", "Trade License", "Health Certificate"]
-  },
-  {
-    id: "utilities",
-    title: "Utilities",
-    titleAr: "المرافق العامة",
-    description: "Water, electricity, gas, and waste management services",
-    descriptionAr: "خدمات المياه والكهرباء والغاز وإدارة النفايات",
-    icon: Wrench,
-    color: "bg-green-500",
-    services: ["Water Bill", "Electricity Bill", "Gas Connection", "Waste Collection"]
-  },
-  {
-    id: "transportation",
-    title: "Transportation",
-    titleAr: "النقل والمواصلات",
-    description: "Public transport, parking, and vehicle services",
-    descriptionAr: "النقل العام، مواقف السيارات، وخدمات المركبات",
-    icon: Car,
-    color: "bg-purple-500",
-    services: ["Bus Pass", "Parking Permit", "Vehicle Registration", "Driver License"]
-  },
-  {
     id: "healthcare",
     title: "Healthcare",
     titleAr: "الرعاية الصحية",
@@ -71,66 +32,6 @@ const serviceCategories: ServiceCategory[] = [
     icon: Heart,
     color: "bg-red-500",
     services: ["Health Certificate", "Medical Report", "Emergency Services", "Vaccination"]
-  },
-  {
-    id: "housing",
-    title: "Housing",
-    titleAr: "الإسكان",
-    description: "Housing applications, property registration, and maintenance",
-    descriptionAr: "طلبات الإسكان، تسجيل العقارات، والصيانة",
-    icon: Home,
-    color: "bg-orange-500",
-    services: ["Housing Application", "Property Registration", "Maintenance Request", "Rent Certificate"]
-  },
-  {
-    id: "education",
-    title: "Education",
-    titleAr: "التعليم",
-    description: "School enrollment, certificates, and educational services",
-    descriptionAr: "تسجيل المدارس، الشهادات، والخدمات التعليمية",
-    icon: Users,
-    color: "bg-indigo-500",
-    services: ["School Enrollment", "Certificate Request", "Student ID", "Scholarship Application"]
-  },
-  {
-    id: "finance",
-    title: "Finance & Taxes",
-    titleAr: "المالية والضرائب",
-    description: "Tax payments, financial services, and economic support",
-    descriptionAr: "دفع الضرائب، الخدمات المالية، والدعم الاقتصادي",
-    icon: Landmark,
-    color: "bg-yellow-500",
-    services: ["Tax Payment", "Financial Aid", "Business Support", "Economic Certificate"]
-  },
-  {
-    id: "safety",
-    title: "Safety & Security",
-    titleAr: "الأمان والأمن",
-    description: "Police services, safety certificates, and emergency response",
-    descriptionAr: "خدمات الشرطة، شهادات الأمان، والاستجابة للطوارئ",
-    icon: Shield,
-    color: "bg-gray-500",
-    services: ["Police Report", "Safety Certificate", "Emergency Response", "Security Clearance"]
-  },
-  {
-    id: "tourism",
-    title: "Tourism & Culture",
-    titleAr: "السياحة والثقافة",
-    description: "Tourist services, cultural events, and heritage sites",
-    descriptionAr: "الخدمات السياحية، الفعاليات الثقافية، والمواقع التراثية",
-    icon: MapPin,
-    color: "bg-pink-500",
-    services: ["Tourist Guide", "Event Permit", "Heritage Visit", "Cultural Certificate"]
-  },
-  {
-    id: "business",
-    title: "Business Support",
-    titleAr: "دعم الأعمال",
-    description: "Business development, investment, and entrepreneurship",
-    descriptionAr: "تطوير الأعمال، الاستثمار، وريادة الأعمال",
-    icon: Building2,
-    color: "bg-teal-500",
-    services: ["Business Plan", "Investment Support", "Startup Registration", "Export License"]
   }
 ];
 

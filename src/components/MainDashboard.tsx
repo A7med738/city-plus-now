@@ -17,8 +17,8 @@ interface Service {
 const mockServices: Service[] = [
   {
     id: "1",
-    title: "Business License Renewal",
-    category: "Permits",
+    title: "Health Certificate",
+    category: "Healthcare",
     status: "progress",
     queuePosition: 3,
     estimatedTime: "45 min",
@@ -26,8 +26,8 @@ const mockServices: Service[] = [
   },
   {
     id: "2",
-    title: "Water Bill Payment",
-    category: "Utilities",
+    title: "Medical Report",
+    category: "Healthcare",
     status: "complete",
     bookingDate: "Yesterday, 2:15 PM"
   }

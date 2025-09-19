@@ -10,12 +10,7 @@ interface BookingConfirmationProps {
 }
 
 const categoryNames: Record<string, string> = {
-  permits: "Permits & Licenses",
-  utilities: "Utilities",
-  property: "Property Services",
-  transportation: "Transportation",
-  social: "Social Services",
-  support: "General Support"
+  healthcare: "Healthcare"
 };
 
 export default function BookingConfirmation({ categoryId, onBack, onConfirmBooking }: BookingConfirmationProps) {
@@ -90,7 +85,7 @@ export default function BookingConfirmation({ categoryId, onBack, onConfirmBooki
               <MapPin className="w-5 h-5 text-primary" />
               <div>
                 <p className="text-sm text-muted-foreground">Location</p>
-                <p className="text-foreground font-medium">City Hall - Service Center</p>
+                <p className="text-foreground font-medium">City Health Center</p>
                 <p className="text-xs text-muted-foreground">123 Main Street, Downtown</p>
               </div>
             </div>
