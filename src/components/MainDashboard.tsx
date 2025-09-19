@@ -58,28 +58,54 @@ export default function MainDashboard({ onBookService }: MainDashboardProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Header */}
-      <div className="p-6 pb-0">
-        <div className="flex items-center justify-between mb-6">
+    <div className="min-h-screen bg-background relative flex flex-col items-center justify-center px-4">
+      {/* Large Plus Sign and Arabic Text */}
+      <div className="flex flex-col items-center justify-center space-y-12 w-full max-w-md">
+        {/* Extra Large Plus Sign for Mobile with Pulse Animation */}
+        <div className="relative">
+          <Button
+            onClick={onBookService}
+            size="lg"
+            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full bg-gradient-primary hover:bg-gradient-primary shadow-float hover:shadow-float transition-all duration-300 scale-100 hover:scale-105 animate-slow-pulse"
+          >
+            <Plus className="w-48 h-48 sm:w-52 sm:h-52 md:w-56 md:h-56 text-primary-foreground" />
+          </Button>
+        </div>
+        
+        {/* Arabic Text - Smaller for better balance */}
+        <div className="text-center w-full">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight" dir="rtl">
+            احجز أي خدمة دلوقتي !
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-medium">
+            Book any service now!
+          </p>
+        </div>
+      </div>
+
+      {/* Header - Compact for Mobile */}
+      <div className="absolute top-4 left-4 right-4">
+        <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">City Services</h1>
-            <p className="text-muted-foreground">Book and manage your appointments</p>
+            <h2 className="text-lg sm:text-xl font-bold text-foreground">City Services</h2>
+            <p className="text-xs sm:text-sm text-muted-foreground">Book and manage your appointments</p>
           </div>
-          <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
-            <User className="w-5 h-5 text-primary-foreground" />
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-full flex items-center justify-center">
+            <User className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
           </div>
         </div>
+      </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+      {/* Quick Stats - Compact for Mobile */}
+      <div className="absolute bottom-20 left-4 right-4">
+        <div className="grid grid-cols-2 gap-3">
           <Card className="bg-gradient-card shadow-card border-border">
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-primary" />
+            <CardContent className="p-3">
+              <div className="flex items-center space-x-2">
+                <Clock className="w-4 h-4 text-primary" />
                 <div>
-                  <p className="text-sm text-muted-foreground">Active Bookings</p>
-                  <p className="text-xl font-semibold text-foreground">
+                  <p className="text-xs text-muted-foreground">Active Bookings</p>
+                  <p className="text-lg font-semibold text-foreground">
                     {mockServices.filter(s => s.status === 'progress' || s.status === 'pending').length}
                   </p>
                 </div>
@@ -88,63 +114,17 @@ export default function MainDashboard({ onBookService }: MainDashboardProps) {
           </Card>
           
           <Card className="bg-gradient-card shadow-card border-border">
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-primary" />
+            <CardContent className="p-3">
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-4 h-4 text-primary" />
                 <div>
-                  <p className="text-sm text-muted-foreground">Next Appointment</p>
-                  <p className="text-xl font-semibold text-foreground">45 min</p>
+                  <p className="text-xs text-muted-foreground">Next Appointment</p>
+                  <p className="text-lg font-semibold text-foreground">45 min</p>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      {/* Services List */}
-      <div className="px-6 pb-32">
-        <h2 className="text-lg font-semibold text-foreground mb-4">Recent Services</h2>
-        <div className="space-y-4">
-          {mockServices.map((service) => (
-            <Card key={service.id} className="bg-gradient-card shadow-card border-border">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-base text-foreground">{service.title}</CardTitle>
-                    <p className="text-sm text-muted-foreground mt-1">{service.category}</p>
-                  </div>
-                  <Badge 
-                    className={`${getStatusColor(service.status)} text-primary-foreground`}
-                  >
-                    {getStatusText(service.status)}
-                  </Badge>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">{service.bookingDate}</span>
-                  {service.queuePosition && (
-                    <div className="flex items-center space-x-2 text-primary">
-                      <Clock className="w-4 h-4" />
-                      <span>Queue: #{service.queuePosition} • {service.estimatedTime}</span>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* Floating Action Button */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2">
-        <Button
-          onClick={onBookService}
-          size="lg"
-          className="w-16 h-16 rounded-full bg-gradient-primary hover:bg-gradient-primary shadow-float hover:shadow-float transition-all duration-300 scale-100 hover:scale-105"
-        >
-          <Plus className="w-8 h-8 text-primary-foreground" />
-        </Button>
       </div>
     </div>
   );
