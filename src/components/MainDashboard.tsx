@@ -1,8 +1,9 @@
-import { Plus, User, LogOut, Calendar } from "lucide-react";
+import { Plus, User, LogOut, Calendar, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from '@/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 interface Service {
   id: string;
@@ -53,6 +54,7 @@ interface MainDashboardProps {
 
 export default function MainDashboard({ onBookService, onViewBookings, bookings }: MainDashboardProps) {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const getStatusColor = (status: Service['status']) => {
     switch (status) {
       case 'pending': return 'bg-status-pending';
@@ -103,6 +105,14 @@ export default function MainDashboard({ onBookService, onViewBookings, bookings 
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-primary rounded-full flex items-center justify-center">
               <User className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
             </div>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-foreground w-8 h-8 sm:w-10 sm:h-10"
+              onClick={() => navigate('/admin/login')}
+            >
+              <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
+            </Button>
             <Button 
               variant="ghost" 
               size="icon" 
